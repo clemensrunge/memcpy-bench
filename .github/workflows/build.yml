@@ -1,0 +1,27 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-and-run:
+    strategy:
+      matrix:
+        build-type: [ Debug, Release ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
+
+      - name: Build
+        run: cmake --build build
+
+      # sudo is passwordless on GitHub runners, so the memory-info section
+      # (dmidecode) works too -- interesting to see what SMBIOS data the
+      # Azure VM exposes. stdin is not a TTY, so no interactive prompt.
+      - name: Run benchmark
+        run: sudo ./build/memcpy-bench
