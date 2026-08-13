@@ -1,0 +1,31 @@
+# CMake build directories (CLion default and conventional)
+cmake-build-*/
+build/
+
+# CMake artifacts, in case of an accidental in-source configure
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+_deps/
+Makefile
+
+# Compiled objects and binaries
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+
+# Debug symbols
+*.pdb
+*.dSYM/
+
+# Core dumps
+core
+core.*
